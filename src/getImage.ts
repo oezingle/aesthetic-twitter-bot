@@ -1,9 +1,6 @@
 
 import fs from 'fs/promises'
-import pathlib from 'path'
-import mime from 'mime'
-
-import { postImage } from './post'
+import { postFile } from './post'
 
 // Needs a slash at the end or the whole world ends
 const imagesDir = "./images/"
@@ -47,15 +44,7 @@ export const getImagePath = (): Promise<string> => {
 export const postRandomImage = () => {
     getImagePath()
         .then(path => {
-            const ext = pathlib.extname(path)
-
-            const mimeType = mime.getType(ext)
-
-            if (!mimeType)
-                throw `No mimeType found for extension ${ext}`
-
-            return fs.readFile(path)
-                .then(buffer => postImage(buffer, mimeType))
+            return postFile(path)
                 .then(() => {
                     console.log("Post Success!")
 

@@ -1,8 +1,10 @@
 
 import { postRandomImage } from "./getImage"
 
-const asyncMain = async () => {
+const main = async () => {
+    console.log("Posting a random image from images/unposted/")
+    
     postRandomImage()
 }
 
-asyncMain()
+main()
