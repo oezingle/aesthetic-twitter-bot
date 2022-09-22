@@ -4,8 +4,10 @@ import getConfig from './getConfig'
 import { postRandomImage } from './getImage'
 
 const main = () => {
-    const config = getConfig()
+    console.log("Started the random image post bot by @tortellinifan2")
 
+    const config = getConfig()
+    
     Scheduler.scheduleJob(config.timeout, () => {
         postRandomImage()
     })
