@@ -5,9 +5,9 @@ interface BotConfiguration {
 	twitterConfig: {
 		appKey: string,
 		appSecret: string,
-		// accessToken: string,
-		// accessSecret: string,
 	},
+
+	deletePosted: boolean,
 
 	timeout: string,
 }
@@ -37,6 +37,8 @@ const createConfig = (): BotConfiguration => {
 			appKey: getEnv("TWITTER_BOT_APP_KEY"),
 			appSecret: getEnv("TWITTER_BOT_APP_SECRET"),
 		},
+
+		deletePosted: getEnv("TWITTER_BOT_DELETE_POSTED").toUpperCase() == "TRUE",
 
 		timeout: getEnv("TWITTER_BOT_CRONTAB")
 	}

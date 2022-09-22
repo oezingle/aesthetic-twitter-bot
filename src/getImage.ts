@@ -1,5 +1,6 @@
 
 import fs from 'fs/promises'
+import getConfig from './getConfig'
 import { postFile } from './post'
 
 // Needs a slash at the end or the whole world ends
@@ -18,11 +19,20 @@ const listImages = () => {
         })
 }
 
-const setImagePosted = (path: string) => {
-    const relative = path
-        .replace(unpostedDir, "")
+/**
+ * Clean up the image in the filesystem, either deleting or moving it.
+ * @param path 
+ * @returns 
+ */
+const setImagePosted = (path: string): Promise<void> => {
+    if (getConfig().deletePosted) {
+        return fs.rm(path)
+    } else {
+        const relative = path
+            .replace(unpostedDir, "")
 
-    return fs.rename(unpostedDir + relative, postedDir + relative)
+        return fs.rename(unpostedDir + relative, postedDir + relative)
+    }
 }
 
 /**
@@ -51,10 +61,10 @@ export const postRandomImage = () => {
                     return setImagePosted(path)
                 })
                 .catch((err) => {
-                    console.log("Post Failed!")
+                    console.warn("Post Failed!")
 
                     console.error(err)
                 })
         })
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
 }
