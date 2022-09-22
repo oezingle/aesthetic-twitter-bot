@@ -19,7 +19,9 @@ Copy the example env vars file
 ```sh
 cp .example.env .env
 ```
-Open `.env` in your favorite text editor and be ready to input the keys we're about to get from twitter.
+Open `.env` in your favorite text editor and be ready to input the keys we're about to get from Twitter.
+
+### Setting up the Twitter side
  - Go the [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
  - Click "Projects and Apps" (left pane)
  - Click "Add App"
@@ -37,7 +39,7 @@ Open `.env` in your favorite text editor and be ready to input the keys we're ab
 
 Now, the Twitter setup is done. You just have to build the project, and log in.
 ```bash
-npm run test auth # promts you to log in if you need to
+npm run test auth # prompts you to log in if you haven't
 ```
 
 ### Running
@@ -47,3 +49,5 @@ Running the bot is easy! Just `cd` to the project directory and run `node build/
  - Only pictures
  - Pictures saved with the wrong filetype won't work (eg, JPEG file called "image.png")
  - The bot skips posts while there aren't any images left to post
+
+# TODO test using brand new twitter app / no Elevated access
