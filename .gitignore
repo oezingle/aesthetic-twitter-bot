@@ -1,0 +1,14 @@
+
+# node shit
+package-lock.json
+node_modules
+
+.env
+build
+
+# stored images
+images/posted/**
+images/unposted/**
+
+# oauth tokens
+tokens.json
