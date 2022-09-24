@@ -37,6 +37,11 @@ Open `.env` in your favorite text editor and be ready to input the keys we're ab
     - Set the Website URL to your own twitter, or your blog, or anything really
     - Click "Save"
 
+Install the dependencies:
+```bash
+npm install
+```
+
 Now, the Twitter setup is done. You just have to build the project, and log in.
 ```bash
 npm run test auth # prompts you to log in if you haven't
