@@ -4,7 +4,7 @@ import getConfig from './getConfig'
 import { postRandomImage } from './getImage'
 
 const main = () => {
-    console.log("Started the random image post bot by @tortellinifan2")
+    console.log("Started the random image post bot")
 
     const config = getConfig()
     

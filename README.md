@@ -15,6 +15,11 @@ Created for [@avanti444](https://twitter.com/avanti444) to automate the posting 
 `npm` - whatever as long as the packages still install
 
 ### Setup
+Make the folders for your images
+```
+mkdir -p images/unposted images/posted
+```
+
 Copy the example env vars file
 ```sh
 cp .example.env .env
