@@ -8,12 +8,12 @@ import mime from 'mime'
 /** 
  * Upload a Buffered image file to twitter
  */
-export const postFileBuffer = async (buffer: Buffer, mimeType: string) => {
+export const postFileBuffer = async (buffer: Buffer, mimeType: string, status: string = "") => {
     const client = await getTwitter()
 
     const media_id = await client.v1.uploadMedia(buffer, { mimeType })
 
-    return client.v1.tweet("", {
+    return client.v1.tweet(status, {
         media_ids: [media_id]
     })
 }
@@ -24,13 +24,15 @@ export const postFileBuffer = async (buffer: Buffer, mimeType: string) => {
 export const postFile = async (path: string) => {
     const ext = pathlib.extname(path)
 
+    const filename = pathlib.parse(path).name
+
     const mimeType = mime.getType(ext)
 
     if (!mimeType)
         throw `No mimeType found for extension ${ext}`
 
     return fs.readFile(path)
-        .then(buffer => postFileBuffer(buffer, mimeType))
+        .then(buffer => postFileBuffer(buffer, mimeType, filename))
 }
 
 /** 

@@ -8,6 +8,7 @@ interface BotConfiguration {
 	},
 
 	deletePosted: boolean,
+	postTitle: boolean,
 
 	timeout: string,
 }
@@ -39,6 +40,7 @@ const createConfig = (): BotConfiguration => {
 		},
 
 		deletePosted: getEnv("TWITTER_BOT_DELETE_POSTED").toUpperCase() == "TRUE",
+		postTitle: getEnv("TWITTER_BOT_POST_TITLE").toUpperCase() == "TRUE",
 
 		timeout: getEnv("TWITTER_BOT_CRONTAB")
 	}
