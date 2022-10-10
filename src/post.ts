@@ -4,6 +4,7 @@ import getTwitter from "./getTwitter";
 import fs from 'fs/promises'
 import pathlib from 'path'
 import mime from 'mime'
+import getConfig from "./getConfig";
 
 /** 
  * Upload a Buffered image file to twitter
@@ -26,13 +27,19 @@ export const postFile = async (path: string) => {
 
     const filename = pathlib.parse(path).name
 
+    let status = ""
+
+    if (filename.startsWith(getConfig().titlePrefix)) {
+        status = filename.slice(getConfig().titlePrefix.length)
+    }
+
     const mimeType = mime.getType(ext)
 
     if (!mimeType)
         throw `No mimeType found for extension ${ext}`
 
     return fs.readFile(path)
-        .then(buffer => postFileBuffer(buffer, mimeType, filename))
+        .then(buffer => postFileBuffer(buffer, mimeType, status))
 }
 
 /** 

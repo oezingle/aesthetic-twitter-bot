@@ -5,7 +5,7 @@ import getTwitter from "./getTwitter"
 import { postText } from "./post"
 
 const main = async () => {
-    const operator = process.argv[2].toLowerCase()
+    const operator = (process.argv[2] ?? "").toLowerCase()
 
     switch (operator) {
         case "auth": {
